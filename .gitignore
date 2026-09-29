@@ -1,0 +1,57 @@
+# ---- Secrets / env ----
+# Ignore ALL env files by default...
+.env
+.env.*
+*.env
+# ...but keep the safe, placeholder-only template tracked.
+!.env.example
+
+# Credentials / keys — never commit these
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+credentials
+credentials.json
+secrets.json
+*.secret
+
+# ---- Python bytecode / caches (every folder, recursively) ----
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+
+# ---- Virtualenv ----
+.venv/
+venv/
+env/
+
+# ---- Build artifacts ----
+dist/
+build/
+*.egg-info/
+
+# ---- Databases / local data ----
+*.db
+*.sqlite
+*.sqlite3
+
+# ---- Logs ----
+*.log
+
+# ---- Project-local ----
+.devflow/
+
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
