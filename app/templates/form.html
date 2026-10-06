@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block main_attrs %}class="center"{% endblock %}
+{% block content %}
+<div class="stack narrow text-center">
+  <span class="pill">🎙 Voice-based technical interview</span>
+  <h1>AI Interview Kickstart</h1>
+  <p class="muted">
+    Enter your GitHub profile and start a live voice interview tailored to your work.
+    You'll get feedback when you're done.
+  </p>
+
+  <form id="start-form" class="input-row" novalidate>
+    <label for="github" class="visually-hidden">GitHub profile URL or username</label>
+    <input id="github" name="github" type="text" inputmode="url" autocomplete="off"
+           placeholder="https://github.com/your-username" required maxlength="200"
+           aria-describedby="form-help form-error">
+    <button id="start-btn" type="submit" class="btn primary">Start interview</button>
+  </form>
+  <p id="form-error" class="error" role="alert" aria-live="assertive"></p>
+  <p id="form-help" class="muted small">
+    We'll ask for microphone access when the interview begins. Transcripts are kept for a limited
+    time and used only to generate your feedback.
+  </p>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/form.js') }}" defer></script>{% endblock %}
