@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Interview · AI Interviewer{% endblock %}
+{% block main_attrs %}class="interview" data-interview-id="{{ interview_id }}"{% endblock %}
+{% block content %}
+<header class="bar">
+  <div class="status-line">
+    <span id="status-dot" class="dot waiting" aria-hidden="true"></span>
+    <span id="status-text" role="status" aria-live="polite">Preparing your interview…</span>
+  </div>
+  <span id="timer" class="muted" aria-label="Time remaining"></span>
+</header>
+
+<section class="stage" aria-label="Call">
+  <div class="orb-wrap">
+    <div id="ai-orb" class="orb violet" aria-hidden="true"></div>
+    <p class="orb-label">Interviewer</p>
+  </div>
+  <div class="orb-wrap">
+    <div id="user-orb" class="orb emerald" aria-hidden="true"></div>
+    <p class="orb-label">You</p>
+  </div>
+</section>
+
+<p id="call-error" class="error text-center" role="alert"></p>
+
+<footer class="controls">
+  <button id="start-call" class="btn primary" type="button" disabled>Start call</button>
+  <button id="end-call" class="btn danger" type="button" hidden>End interview</button>
+</footer>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/interview.js') }}" defer></script>{% endblock %}
