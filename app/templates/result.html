@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Results · AI Interviewer{% endblock %}
+{% block main_attrs %}class="page" data-interview-id="{{ interview_id }}"{% endblock %}
+{% block content %}
+<header class="bar">
+  <div>
+    <h1 class="h2">Interview results</h1>
+    <p class="muted">Your feedback and the full conversation transcript.</p>
+  </div>
+  <a class="btn" href="{{ url_for('pages.index') }}">New interview</a>
+</header>
+
+<div id="pending" class="card text-center" role="status" aria-live="polite">
+  <p><strong>Analyzing your interview…</strong></p>
+  <p class="muted small">This usually takes a few seconds.</p>
+</div>
+
+<p id="result-error" class="error" role="alert" hidden></p>
+
+<section id="result" hidden>
+  <div class="card">
+    <div class="score-row">
+      <h2 class="h3">AI feedback</h2>
+      <p class="score"><span id="score"></span><span class="muted"> / 10</span></p>
+    </div>
+    <p id="feedback" class="prewrap"></p>
+    <div class="columns">
+      <div><h3 class="h4">Strengths</h3><ul id="strengths"></ul></div>
+      <div><h3 class="h4">To improve</h3><ul id="improvements"></ul></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="transcript-heading">
+  <h2 id="transcript-heading" class="h4 muted">Conversation</h2>
+  <ol id="transcript" class="transcript"></ol>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/result.js') }}" defer></script>{% endblock %}
