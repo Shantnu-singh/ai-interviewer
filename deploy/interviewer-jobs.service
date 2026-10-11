@@ -1,0 +1,24 @@
+[Unit]
+Description=AI Interviewer - RQ job worker (GitHub fetch, evaluation)
+After=network.target redis.service postgresql.service
+Wants=redis.service postgresql.service
+
+[Service]
+Type=simple
+User=ai-interviewer
+Group=ai-interviewer
+WorkingDirectory=/opt/ai-interviewer
+EnvironmentFile=/opt/ai-interviewer/.env
+ExecStart=/opt/ai-interviewer/.venv/bin/rq worker default
+Restart=always
+RestartSec=2
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/ai-interviewer
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+
+[Install]
+WantedBy=multi-user.target
