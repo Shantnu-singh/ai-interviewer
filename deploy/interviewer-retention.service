@@ -1,0 +1,10 @@
+[Unit]
+Description=AI Interviewer - daily retention cleanup
+
+[Service]
+Type=oneshot
+User=ai-interviewer
+Group=ai-interviewer
+WorkingDirectory=/opt/ai-interviewer
+EnvironmentFile=/opt/ai-interviewer/.env
+ExecStart=/opt/ai-interviewer/.venv/bin/flask --app wsgi purge-old
