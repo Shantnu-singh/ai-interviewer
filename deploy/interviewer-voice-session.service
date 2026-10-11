@@ -1,0 +1,28 @@
+[Unit]
+Description=AI Interviewer - voice session worker (Deepgram STT / OpenAI / Sarvam TTS)
+After=network.target redis.service postgresql.service
+Wants=redis.service postgresql.service
+
+[Service]
+Type=simple
+User=ai-interviewer
+Group=ai-interviewer
+WorkingDirectory=/opt/ai-interviewer
+EnvironmentFile=/opt/ai-interviewer/.env
+ExecStart=/opt/ai-interviewer/.venv/bin/python -m worker.voice_session
+# On restart, in_progress interviews with a live browser connection are not auto-recovered
+# (there's no third-party call to re-attach to); the browser's WS reconnect, if any, will
+# claim a fresh session. Stale claims past ORPHAN_CLAIM_SECONDS are failed on next startup.
+Restart=always
+RestartSec=2
+TimeoutStopSec=20
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/ai-interviewer
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+
+[Install]
+WantedBy=multi-user.target
