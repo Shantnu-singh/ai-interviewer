@@ -9,18 +9,28 @@
     You'll get feedback when you're done.
   </p>
 
-  <form id="start-form" class="input-row" novalidate>
-    <label for="github" class="visually-hidden">GitHub profile URL or username</label>
-    <input id="github" name="github" type="text" inputmode="url" autocomplete="off"
-           placeholder="https://github.com/your-username" required maxlength="200"
-           aria-describedby="form-help form-error">
-    <button id="start-btn" type="submit" class="btn primary">Start interview</button>
-  </form>
-  <p id="form-error" class="error" role="alert" aria-live="assertive"></p>
-  <p id="form-help" class="muted small">
-    We'll ask for microphone access when the interview begins. Transcripts are kept for a limited
-    time and used only to generate your feedback.
-  </p>
+  <section class="setup-card" aria-labelledby="setup-heading">
+    <h2 id="setup-heading" class="h2">Start your interview</h2>
+    <p class="muted small">Share your GitHub profile so we can tailor the conversation to your experience.</p>
+
+    <form id="start-form" class="setup-form" novalidate>
+      <div class="setup-field">
+        <label for="github" class="setup-label">GitHub profile URL or username</label>
+        <input id="github" name="github" type="text" inputmode="url" autocomplete="off"
+               placeholder="https://github.com/your-username" required maxlength="200"
+               aria-describedby="form-help form-error" aria-invalid="false">
+        <p id="form-help" class="setup-helper muted small">
+          We'll ask for microphone access when the interview begins. Transcripts are kept for a limited
+          time and used only to generate your feedback.
+        </p>
+      </div>
+      <div class="setup-actions">
+        <button id="start-btn" type="submit" class="btn primary" aria-busy="false">Start interview</button>
+        <span id="form-status" class="visually-hidden" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+    <p id="form-error" class="error" role="alert" aria-live="assertive" hidden></p>
+  </section>
 </div>
 {% endblock %}
 {% block scripts %}<script src="{{ url_for('static', filename='js/form.js') }}" defer></script>{% endblock %}
